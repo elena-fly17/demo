@@ -74,9 +74,7 @@ public class Starter4 {
 //        System.out.println(completableFuture.get()); // ExecutionException
 
         CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> "Hello");
-
         CompletableFuture<String> future = cf.thenApplyAsync(s -> s + " World");
-
         System.out.println(future.get());
 
 
