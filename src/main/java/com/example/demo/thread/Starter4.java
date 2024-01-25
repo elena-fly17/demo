@@ -3,6 +3,8 @@ package com.example.demo.thread;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Starter4 {
 
@@ -46,6 +48,43 @@ public class Starter4 {
 //        CompletableFuture future = CompletableFuture.supplyAsync(() -> "Hello")
 //                .thenAcceptBoth(CompletableFuture.supplyAsync(() -> " World"),
 //                        (s1, s2) -> System.out.println(s1 + s2));
+
+//        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
+//        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
+//        CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "World");
+//        CompletableFuture<Void> combineFuture = CompletableFuture.allOf(future1, future2, future3);
+//        combineFuture.get();
+//        String combined = Stream
+//                .of(future1, future2, future3)
+//                .map(CompletableFuture::join)
+//                .collect(Collectors.joining(" "));
+//        System.out.println(combined);
+
+//        String name = null;
+//        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+//            if (name == null) {
+//                throw new RuntimeException("Computation error!");
+//            }
+//            return "Hello, " + name;
+//        }).handle((s, t) -> s != null ? s : "Hello, Stranger!");
+//        System.out.println(completableFuture.get());
+
+//        CompletableFuture<String> completableFuture = new CompletableFuture<>();
+//        completableFuture.completeExceptionally(new RuntimeException("Calculation failed!"));
+//        System.out.println(completableFuture.get()); // ExecutionException
+
+        CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> "Hello");
+
+        CompletableFuture<String> future = cf.thenApplyAsync(s -> s + " World");
+
+        System.out.println(future.get());
+
+
+
+
+
+
+
 
 
     }
